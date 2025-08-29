@@ -1,0 +1,246 @@
+<!doctype html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Questionnaire — UniPredict</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="site-bg text-white">
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand heading-accent" href="/">UniPredict</a>
+    <div>
+      <a class="btn btn-light btn-sm" href="/">Return to Homepage</a>
+      <a class="btn btn-outline-light btn-sm ms-2" id="studentLogoutBtn" href="#">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container my-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card p-3 shadow-sm">
+        <h4 style="color:#8ED1A6">Student Questionnaire</h4>
+        <p id="welcomeStudent" class="form_label">Please complete the form below.</p>
+
+        <form id="questionnaireForm" class="row g-3">
+          
+          <!-- === MODEL REQUIRED FIELDS === -->
+
+          <!-- (1) Age -->
+          <div class="col-12 col-md-6">
+            <label for="age" class="form-label form_label">Age (years)</label>
+            <input id="age" type="number" class="form-control" min="10" max="100" required>
+          </div>
+
+          <!-- (2) Study_Hours_Per_Day -->
+          <div class="col-12 col-md-6">
+            <label for="studyHoursPerDay" class="form-label form_label">Average study hours per day </label>
+            <input id="studyHoursPerDay" type="number" class="form-control" step="0.25" min="0" max="24" required>
+          </div>
+
+          <!-- (3) WAEC_Average (multi-select checkboxes -> averaged in JS) -->
+          <div class="col-12">
+            <label class="form-label form_label">WAEC Grades — select the grade for each subject you sat (select multiple if needed)</label>
+            <div class="row">
+              <div class="col-6 col-md-4">
+                <div class="form-check form_label">
+                  <input class="form-check-input waecGrade" name="waecGrades" type="checkbox" value="1" id="waecA">
+                  <label class="form-check-label" for="waecA">A (Excellent)</label>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="form-check form_label">
+                  <input class="form-check-input waecGrade" name="waecGrades" type="checkbox" value="2" id="waecB">
+                  <label class="form-check-label" for="waecB">B (Very Good)</label>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="form-check form_label">
+                  <input class="form-check-input waecGrade" name="waecGrades" type="checkbox" value="3" id="waecC">
+                  <label class="form-check-label" for="waecC">C (Credit)</label>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="form-check form_label">
+                  <input class="form-check-input waecGrade" name="waecGrades" type="checkbox" value="4" id="waecD">
+                  <label class="form-check-label" for="waecD">D (Pass)</label>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="form-check form_label">
+                  <input class="form-check-input waecGrade" name="waecGrades" type="checkbox" value="5" id="waecE">
+                  <label class="form-check-label" for="waecE">E (Weak Pass)</label>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="form-check form_label">
+                  <input class="form-check-input waecGrade" name="waecGrades" type="checkbox" value="6" id="waecF">
+                  <label class="form-check-label" for="waecF">F (Fail)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- (4-7) Exam Preparation checkboxes -->
+          <div class="col-12">
+            <label class="form-label form_label">Extra Study Style (check all that apply)</label>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="prep_collab">
+                  <label class="form-check-label" for="prep_collab">Collaborating with study partners</label>
+                </div>
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="prep_past">
+                  <label class="form-check-label" for="prep_past">Practicing past exam papers</label>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="prep_notes">
+                  <label class="form-check-label" for="prep_notes">Reviewing lecture notes and materials</label>
+                </div>
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="prep_help">
+                  <label class="form-check-label" for="prep_help">Seeking help from instructors / tutors</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- (8-13) Helpful Study Materials (6 checkboxes) -->
+          <div class="col-12">
+            <label class="form-label form_label">Helpful study materials (check all that apply)</label>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="mat_notes">
+                  <label class="form-check-label" for="mat_notes">Lecture notes</label>
+                </div>
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="mat_online">
+                  <label class="form-check-label" for="mat_online">Online resources (websites, videos)</label>
+                </div>
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="mat_practice">
+                  <label class="form-check-label" for="mat_practice">Practice problems & exercises</label>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="mat_textbook">
+                  <label class="form-check-label" for="mat_textbook">Textbooks</label>
+                </div>
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="mat_tutorials">
+                  <label class="form-check-label" for="mat_tutorials">Tutorials</label>
+                </div>
+                <div class="form-check form_label">
+                  <input class="form-check-input" type="checkbox" id="mat_videos">
+                  <label class="form-check-label" for="mat_videos">Video lectures</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- === Extra/UI fields -->
+
+          <div class="col-12 col-md-6">
+            <label class="form-label form_label">Lecture attendance rate</label>
+            <select id="attendance" class="form-select">
+              <option value="">Select...</option>
+              <option value="50">Under 50%</option>
+              <option value="70">50% - 69%</option>
+              <option value="85">70% - 84%</option>
+              <option value="95">85% - 100%</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label form_label">Exam preparation method</label>
+            <select id="prepMethod" class="form-select">
+              <option value="">Select...</option>
+              <option value="1">Individual study</option>
+              <option value="2">Group study</option>
+              <option value="3">With tutoring</option>
+              <option value="4">Mixed methods</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label form_label">Financial support (Parental/Scholarship)</small></label>
+            <select id="financialSupport" class="form-select">
+              <option value="">Select...</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label form_label">Number of class absences (last term)</label>
+            <input id="absences" type="number" class="form-control" min="0" max="100" value="0">
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label form_label">Average sleep hours per night</label>
+            <select id="sleepHours" class="form-select">
+              <option value="">Select...</option>
+              <option value="4">Less than 5 hours</option>
+              <option value="6">5 - 6 hours</option>
+              <option value="7">7 - 8 hours</option>
+              <option value="9">9+ hours</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label form_label">Highest parental education level</label>
+            <select id="Parental_Education" class="form-select">
+              <option value="">Select...</option>
+              <option value="1">No formal education</option>
+              <option value="2">Primary</option>
+              <option value="3">Secondary</option>
+              <option value="4">Tertiary</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label form_label">Gender</label>
+            <select id="Gender" class="form-select">
+              <option value="">Select...</option>
+              <option value="1">Male</option>
+              <option value="0">Female</option>
+            </select>
+          </div>
+
+          <!-- Submit -->
+          <div class="col-12">
+            <button type="submit" id="submitPrediction" class="btn btn-success">Submit for Prediction</button>
+            <div id="predictSpinner" class="spinner-border text-light ms-3 d-none" role="status"><span class="visually-hidden">Loading...</span></div>
+          </div>
+
+        </form>
+
+        <div id="resultCard" class="mt-3 d-none">
+          <hr />
+          <h5 class="form_label">Prediction Result</h5>
+          <p class="form_label">Predicted GPA: <strong id="predGPA">-</strong> <span id="riskBadge" class="badge"></span></p>
+          <div id="suggestionsList" class="form_label"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="text-center text-white py-3">
+  <small>&copy; UniPredict • Student Portal</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

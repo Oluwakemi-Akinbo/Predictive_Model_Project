@@ -1,0 +1,57 @@
+/* styles.css — external CSS (colors & layout) */
+:root{
+  --accent: #8ED1A6;
+  --bg: #1B2945;
+  --input-bg: #ffffff;
+}
+
+body.site-bg {
+  background: var(--bg);
+  min-height:100vh;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: white;
+}
+
+.heading-accent {
+  color: var(--accent) !important;
+}
+
+.hero-img {
+  height: 360px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card {
+  background: rgba(255,255,255,0.04);
+  border: none;
+}
+
+.form-control, .form-select {
+  background: var(--input-bg);
+  color: #0b1724;
+}
+
+/* labels customization for class form_label */
+.form_label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* risk badges: Low (red), Medium (yellow), High (green) to match user's mapping */
+.badge-risk-low {
+  background: #e74c3c;
+  color: #fff;
+}
+.badge-risk-medium {
+  background: #f1c40f;
+  color: #0b1724;
+}
+.badge-risk-high {
+  background: #2ecc71;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .hero-img { height:200px; }
+}

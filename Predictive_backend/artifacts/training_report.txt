@@ -1,0 +1,16 @@
+Training report for Ridge Regression
+Date (UTC): 2025-08-24T18:36:46.602637Z
+Rows total: 120
+Rows used (non-null target): 60
+Features used (21): Age, Study_Hours_Per_Day, WAEC_Average, Exam_Preparation_Collaborating_with_study_partners, Exam_Preparation_Practicing_past_exam_papers, Exam_Preparation_Reviewing_lecture_notes_and_materials, Exam_Preparation_Seeking_help_from_instructors_or_tutors, Helpful_Study_Materials_Lecture_notes, Helpful_Study_Materials_Online_resources_eg, Helpful_Study_Materials_Practice_problems_and_exercises, Helpful_Study_Materials_Textbooks, Helpful_Study_Materials_tutorials, Helpful_Study_Materials_video_lectures, Age_standardized, Age_minmax, Study_Hours_Per_Day_standardized, Study_Hours_Per_Day_minmax, WAEC_Average_standardized, WAEC_Average_minmax, First_Year_GPA_Average_standardized, First_Year_GPA_Average_minmax
+Target: First_Year_GPA_Average (scale: 0_to_5)
+Alpha: 1.0
+
+Test metrics:
+  RMSE: 0.0147
+  MAE : 0.0130
+  R^2 : 0.9996
+
+Notes:
+- Predictions should be clipped to [0, 5] if you report on a 5.0 scale.
+- For hyperparameter tuning, consider GridSearchCV on alpha = [0.01, 0.1, 1, 10, 50].

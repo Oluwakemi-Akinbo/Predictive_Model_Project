@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard — UniPredict</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="site-bg text-white">
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand heading-accent" href="/">UniPredict Admin</a>
+    <div>
+      <a class="btn btn-light btn-sm" href="/">Return to Homepage</a>
+      <a class="btn btn-outline-light btn-sm ms-2" id="adminLogoutBtn" href="#">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container my-4">
+  <div class="card p-3 shadow-sm">
+    <h4 style="color:#8ED1A6">Aggregated Predictions</h4>
+
+    <div class="row mb-3">
+      <div class="col-8 col-md-6">
+        <label class="form-label form_label">Filter by risk</label>
+        <select id="filterRisk" class="form-select">
+          <option value="all">All</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="col-4 d-flex align-items-end">
+        <button id="exportCsv" class="btn btn-outline-light ms-auto">Export CSV</button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table id="predTable" class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Predicted GPA (5.0 scale)</th>
+            <th>Risk</th>
+            <th>Key Predictors</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer class="text-center text-white py-3"><small>&copy; UniPredict • Admin</small></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
