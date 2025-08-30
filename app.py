@@ -20,7 +20,7 @@ with open(metadata_path, "r") as f:
 EXPECTED_FEATURES = metadata.get("feature_names", [])
 
 # Frontend Routes
-@app.route("/")
+@app.route("/home")
 def home():
     return render_template('index.html')
 
