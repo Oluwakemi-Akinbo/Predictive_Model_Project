@@ -7,12 +7,12 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load artifacts
-ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "artifacts")
+ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "Predictive_backend/artifacts")
 
-pipeline_path = os.path.join(ARTIFACTS_DIR, "pipeline_ridge.joblib")
+pipeline_path = os.path.join(ARTIFACTS_DIR, "Predictive_backend/artifacts/pipeline_ridge.joblib")
 model = joblib.load(pipeline_path)
 
-metadata_path = os.path.join(ARTIFACTS_DIR, "model_metadata.json")
+metadata_path = os.path.join(ARTIFACTS_DIR, "Predictive_backend/artifacts/model_metadata.json")
 with open(metadata_path, "r") as f:
     metadata = json.load(f)
 
