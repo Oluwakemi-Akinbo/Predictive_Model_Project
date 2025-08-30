@@ -4,7 +4,9 @@ import json
 import os
 import pandas as pd
 
-app = Flask(__name__)
+app = Flask(__name__, 
+           template_folder='Predictive_backend/templates',
+           static_folder='Predictive_backend/static')
 
 # Load artifacts
 ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "Predictive_backend/artifacts")
